@@ -1,5 +1,6 @@
 #Angry_Alarm script
 from nexmomessage import NexmoMessage
+import urllib2
 
 class Task:
 
@@ -9,8 +10,8 @@ class Task:
         self.notes = no
         self.isCompleted = iscomp
         
-    def complete():
-        isCompleted = true
+    def complete(self):
+        self.isCompleted = True
         
 class User:
     
@@ -19,21 +20,41 @@ class User:
         self.phone = pho
         self.tasks = tsks
         
-def send_text(task):
-    if(!task.isCompleted) 
+    def send_text(self):
+        
         msg = {
-        'reqtype': 'json',
-        'api_key': 'e09b4f8d',
-        'api_secret': 'e4744669',
-        'from': '15013036357',
-        'to': '+15803998205',
-        'text': 'WHY ARE YOU SUCH A SLACKER?!?!?!'
-        }
+            'reqtype': 'json',
+            'api_key':  '47bcdeb1',
+            'api_secret': 'd6be33eb',
+            'from': '19705500043',
+            'to': '13477597022',
+            'text':'WHY ARE YOU SUCH A SLACKER?!?!?!'
+            }
         sms = NexmoMessage(msg)
         sms.set_text_info(msg['text'])
+        response = sms.send_request()
+
+        if response:
+             # do something with response data
+            print('worked')
+        else:
+            # handle the error
+            print('nope')
+
+    def call(self):
+        url_request='https://rest.nexmo.com/tts/json?api_key=47bcdeb1&api_secret=d6be33eb&from=19705500043&to=13477597022&text=DO+YOUR+WORK+NOW' 
+        f=urllib2.urlopen(url_request)
+        print(f.read())
+        print (f.getcode())
+
+ #test script
+if __name__ =='__main__':
+
+    mytask=Task('do homework', '2/17', '', False)
+    me=User('michelle','8327557056', mytask)
     
-        
-    
-        
-    
-        
+    if me.tasks.isCompleted==False:
+        print('in loop')
+       # me.send_text()
+
+    me.call()

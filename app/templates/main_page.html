@@ -17,34 +17,48 @@
 
 		
        
-          <ul>
+      <!--     <ul>
             <li><a href="http://home.php/" target="_blank">Home</a></li>
             <li><a href="http://log.php/" target="_blank">Today</a></li>
        		<li><a href="http://relive.php/" target="_blank">Create New Task</a></li>
-          </ul>
+          </ul> -->
       
 
 
 <div>
-	<h1><font size="8" color="#000080">To Do Or Die</font></h1>
+	<h1><font size="8" color="#000080">Angry To Do List</font></h1>
     
-    <p> <font size="3" color="#000080">Let's create a new task so that we can get shit done...now</font></p>
+    <p> <font size="3" color="#000080">Stop procrastinating and get shit done now</font></p>
     
-       <form name="0.1.3_createNewTask" method="post" action="http://cgi-bin/eform.cgi" target="_blank" onsubmit="return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);">
-    	<p><font size="3" color="#000080">New Task:<input type="text" name="NewTaskName"></font></p>
-       <p><font size="3" color="#000080">Importance:</font>
-       		<select name="Importance"></select>
+       <form name="0.1.3_createNewTask" method=post action="{{url_for(main_page)}}" >
+          {{form.hidden_tag()}}
+
+          <p>{{form.name.label}}</p>
+          {{form.name(size=50)}}<br>
+          <p>{{form.phone.label}}</p>
+          {{form.phone(size=50)}}<br>
+
+
+    	<p><font size="3" color="#000080">{{form.task.label}}</font></p>
+      {{form.Task(size=70)}}<br>
+       <p><font size="3" color="#000080">{{form.importance.label}}</font>
+       	{{form.importance(size=10)}}
             <option value=""> 
             </option><option> Low
             </option><option> Medium
             </option><option> High
             
-       </option></p><p><font size="3" color="#000080">Complete Task By: <input type="date" name="date"></font></p>
-       <p><font size="3" color="#000080">Time:<input type="time" name="time"></font></p>
-       <p><font size="3" color="#000080">Notes:<br><textarea name="notes" rows="5" cols="30"></textarea></font></p>
-       <p><input type="submit">
+       </option></p>
+       <p><font size="3" color="#000080">{{form.date.label}} </font></p> {{form.date(size=30)}} <br>
+
+       <p><font size="3" color="#000080">{{form.time.label}}</font></p>
+       {{form.time(size=30)}} <br>
+
+       <p><font size="3" color="#000080">{{form.notes.label}}:<br>
+        {{form.notes(rows=5, cols=40)}}</font></p> <br>
+       {{form.submit}}
       
-</p><p></p></form>
+<p></p></form>
 </div>
 
 </body></html>
